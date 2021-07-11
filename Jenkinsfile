@@ -1,3 +1,5 @@
+def CONTAINER_NAME="nginx-container"
+
 node {
     stage('Checkout') {
         checkout scm
@@ -8,9 +10,8 @@ node {
         echo "testing success!"
     }
 
-    stage('Clean'){
-        sh "docker rm nginx-container"
-        echo "delete success!"
+    stage("Image Prune"){
+        imagePrune(CONTAINER_NAME)
     }
 
     stage('Build'){
@@ -22,4 +23,11 @@ node {
         sh "docker run -d -p 8080:80 --name nginx-container my-custom-nginx"
         echo "Application started!"
     }
+}
+
+def imagePrune(containerName){
+    try {
+        sh "docker image prune -f"
+        sh "docker stop $containerName"
+    } catch(error){}
 }
