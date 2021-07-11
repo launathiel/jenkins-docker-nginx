@@ -1,6 +1,6 @@
 node {
     stage('Checkout') {
-            checkout scm
+        checkout scm
     }
 
     stage('testing'){
@@ -14,8 +14,7 @@ node {
     }
 
     stage('Run App'){
-        sh "docker run -p 8080:80 my-custom-nginx"
+        sh "docker run -d -p 8080:80 my-custom-nginx"
         echo "Application started!"
     }
-
 }
