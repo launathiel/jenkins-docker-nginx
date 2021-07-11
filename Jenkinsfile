@@ -20,7 +20,7 @@ node {
     }
 
     stage('Run App'){
-        sh "docker run -d -p 8080:80 --name nginx-container my-custom-nginx"
+        sh "docker run -d --rm -p 8080:80 --name nginx-container my-custom-nginx"
         echo "Application started!"
     }
 }
