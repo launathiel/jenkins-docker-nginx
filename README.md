@@ -17,3 +17,7 @@ the jenkins server will run on your host port 8083.
 ```bash
 http://$host:8083
 ```
+
+you will see this started page and you'll be asked for lock password.
+
+```bash
